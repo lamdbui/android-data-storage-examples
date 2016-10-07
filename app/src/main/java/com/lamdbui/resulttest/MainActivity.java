@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mItemCountTextView = (TextView) findViewById(R.id.item_count_text_view);
-        mItemCountTextView.setText(mItems.size() + " number of items");
+        updateUI();
 
         mStartTestButton = (Button) findViewById(R.id.start_test_button);
         mStartTestButton.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mItemCountTextView.setText(mItems.size() + " number of items");
+        updateUI();
     }
 
     @Override
@@ -56,8 +56,12 @@ public class MainActivity extends AppCompatActivity {
             return;
 
         if(requestCode == REQUEST_CODE_LIST) {
-            // get our updated list nere
+            // get our updated list here
             mItems = data.getStringArrayListExtra(ItemListActivity.EXTRA_ITEM_LIST);
         }
+    }
+
+    private void updateUI() {
+        mItemCountTextView.setText(mItems.size() + " number of items");
     }
 }
