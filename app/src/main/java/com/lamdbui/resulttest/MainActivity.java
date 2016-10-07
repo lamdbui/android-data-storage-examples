@@ -1,5 +1,6 @@
 package com.lamdbui.resulttest;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +12,12 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView mItemCountTextView;
-    Button mStartTestButton;
+    public static final int REQUEST_CODE_LIST = 1;
 
-    ArrayList<String> mItems;
+    private TextView mItemCountTextView;
+    private Button mStartTestButton;
+
+    private ArrayList<String> mItems;
 
     public MainActivity() {
         mItems = new ArrayList<>();
@@ -35,8 +38,26 @@ public class MainActivity extends AppCompatActivity {
                 //Intent intent = new Intent(MainActivity.this, ItemListActivity.class);
                 // pass in the current Item list to the child Activity
                 Intent intent = ItemListActivity.newIntent(MainActivity.this, mItems);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE_LIST);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mItemCountTextView.setText(mItems.size() + " number of items");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode != Activity.RESULT_OK)
+            return;
+
+        if(requestCode == REQUEST_CODE_LIST) {
+            // get our updated list nere
+            mItems = data.getStringArrayListExtra(ItemListActivity.EXTRA_ITEM_LIST);
+        }
     }
 }

@@ -1,19 +1,23 @@
 package com.lamdbui.resulttest;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class ItemListActivity extends AppCompatActivity {
 
-    private static final String EXTRA_ITEM_LIST =
+    public static final String EXTRA_ITEM_LIST =
             "com.lamdbui.resulttest.extra_item_list";
 
     private TextView mItemCountTextView;
+    private Button mFinishButton;
 
     // used as a local list that will be passed back later
     ArrayList<String> mItems;
@@ -33,5 +37,18 @@ public class ItemListActivity extends AppCompatActivity {
 
         mItemCountTextView = (TextView) findViewById(R.id.num_of_passed_in_items_text_view);
         mItemCountTextView.setText(mItems.size() + " items where passed in by the parent Activity");
+
+        mFinishButton = (Button) findViewById(R.id.finish_button);
+        mFinishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent data = new Intent();
+                mItems.add("lol");
+                mItems.add("wut");
+                data.putStringArrayListExtra(EXTRA_ITEM_LIST, mItems);
+                setResult(Activity.RESULT_OK, data);
+                finish();
+            }
+        });
     }
 }
