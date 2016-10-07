@@ -12,18 +12,18 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final int REQUEST_CODE_LIST = 1;
+    //public static final int REQUEST_CODE_LIST = 1;
     public static final int REQUEST_FRAGMENT_CODE_LIST = 2;
 
     private TextView mItemCountTextView;
     private Button mStartTestButton;
     private Button mStartTestFragmentButton;
 
-    private ArrayList<String> mItems;
+    //private ArrayList<String> mItems;
 
     public MainActivity() {
         //mItems = new ArrayList<>();
-        mItems = ItemManager.get().getItems();
+        //mItems = ItemManager.get().getItems();
     }
 
     @Override
@@ -39,8 +39,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // pass in the current Item list to the child Activity
-                Intent intent = ItemListActivity.newIntent(MainActivity.this, mItems);
+                //Intent intent = ItemListActivity.newIntent(MainActivity.this, mItems);
                 //startActivityForResult(intent, REQUEST_CODE_LIST);
+                Intent intent = new Intent(MainActivity.this, ItemListActivity.class);
                 startActivity(intent);
             }
         });
@@ -51,9 +52,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // pass in the current Item list to the Fragment-based child Activity
-                Intent intent = ItemListFragmentActivity.newIntent(MainActivity.this, mItems);
-                startActivityForResult(intent, REQUEST_FRAGMENT_CODE_LIST);
-                //startActivity(intent);
+                //Intent intent = ItemListFragmentActivity.newIntent(MainActivity.this, mItems);
+                //startActivityForResult(intent, REQUEST_FRAGMENT_CODE_LIST);
+                Intent intent = new Intent(MainActivity.this, ItemListFragmentActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -64,23 +66,22 @@ public class MainActivity extends AppCompatActivity {
         updateUI();
     }
 
+    /*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode != Activity.RESULT_OK)
             return;
 
-        /*
         if(requestCode == REQUEST_CODE_LIST) {
             // get our updated list here
             mItems = data.getStringArrayListExtra(ItemListActivity.EXTRA_ITEM_LIST);
-        }*/
-
+        }
 
         if(requestCode == REQUEST_FRAGMENT_CODE_LIST) {
             // get out updated list(from the fragment) here
             mItems = data.getStringArrayListExtra(ItemListFragmentActivity.EXTRA_FRAGMENT_ITEM_LIST);
         }
-    }
+    }*/
 
     private void updateUI() {
         //mItemCountTextView.setText(mItems.size() + " " + getString(R.string.num_of_items));
