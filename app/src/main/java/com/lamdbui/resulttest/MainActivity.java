@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
         if(resultCode != Activity.RESULT_OK)
             return;
 
@@ -79,6 +78,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
-        mItemCountTextView.setText(mItems.size() + " number of items");
+        mItemCountTextView.setText(mItems.size() + " " + getString(R.string.num_of_items));
     }
 }

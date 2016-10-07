@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ResultTest</string>
+    <string name="num_of_items">number of items</string>
+    <string name="num_of_items_passed_in">number of items passed in</string>
 </resources>

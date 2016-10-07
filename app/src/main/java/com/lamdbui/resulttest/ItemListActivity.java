@@ -36,7 +36,7 @@ public class ItemListActivity extends AppCompatActivity {
         mItems = getIntent().getStringArrayListExtra(EXTRA_ITEM_LIST);
 
         mItemCountTextView = (TextView) findViewById(R.id.num_of_passed_in_items_text_view);
-        mItemCountTextView.setText(mItems.size() + " items where passed in by the parent Activity");
+        mItemCountTextView.setText(mItems.size() + " " + getString(R.string.num_of_items_passed_in));
 
         mFinishButton = (Button) findViewById(R.id.finish_button);
         mFinishButton.setOnClickListener(new View.OnClickListener() {

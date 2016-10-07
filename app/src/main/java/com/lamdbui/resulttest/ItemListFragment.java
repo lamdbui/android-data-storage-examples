@@ -46,7 +46,7 @@ public class ItemListFragment extends Fragment {
         mItems = getArguments().getStringArrayList(ARGS_ITEM_LIST);
 
         mItemCountTextView = (TextView) view.findViewById(R.id.num_of_passed_in_items_text_view);
-        mItemCountTextView.setText(mItems.size() + " items were passed in to this Fragment");
+        mItemCountTextView.setText(mItems.size() + " " + getString(R.string.num_of_items_passed_in));
 
         mFinishButton = (Button) view.findViewById(R.id.finish_button);
         mFinishButton.setOnClickListener(new View.OnClickListener() {
