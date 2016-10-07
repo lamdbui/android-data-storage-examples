@@ -32,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
         mStartTestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ItemListActivity.class);
+                //Intent intent = new Intent(MainActivity.this, ItemListActivity.class);
+                // pass in the current Item list to the child Activity
+                Intent intent = ItemListActivity.newIntent(MainActivity.this, mItems);
                 startActivity(intent);
             }
         });
