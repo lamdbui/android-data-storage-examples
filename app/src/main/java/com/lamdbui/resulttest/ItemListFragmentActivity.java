@@ -10,8 +10,7 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-public class ItemListFragmentActivity extends AppCompatActivity
-    implements ItemListFragment.OnItemListListener {
+public class ItemListFragmentActivity extends AppCompatActivity {
 
     public static final String EXTRA_FRAGMENT_ITEM_LIST =
             "com.lamdbui.resulttest.extra_fragment_item_list";
@@ -35,20 +34,11 @@ public class ItemListFragmentActivity extends AppCompatActivity
         Fragment fragment = fm.findFragmentById(R.id.activity_item_list_fragment_container);
 
         if(fragment == null) {
-            //fragment = new ItemListFragment();
             fragment = ItemListFragment.newFragment(mItems);
 
             fm.beginTransaction()
                     .add(R.id.activity_item_list_fragment_container, fragment)
                     .commit();
         }
-    }
-
-    @Override
-    public void onItemListFinish(ArrayList<String> finalItems) {
-        Intent data = new Intent();
-        data.putStringArrayListExtra(ItemListFragment.EXTRA_FRAGMENT_ITEM_LIST,
-                finalItems);
-        setResult(Activity.RESULT_OK, data);
     }
 }

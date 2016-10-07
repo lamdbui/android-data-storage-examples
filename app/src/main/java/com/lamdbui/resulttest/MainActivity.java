@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         mStartTestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(MainActivity.this, ItemListActivity.class);
                 // pass in the current Item list to the child Activity
                 Intent intent = ItemListActivity.newIntent(MainActivity.this, mItems);
                 startActivityForResult(intent, REQUEST_CODE_LIST);
@@ -49,9 +48,8 @@ public class MainActivity extends AppCompatActivity {
         mStartTestFragmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(MainActivity.this, ItemListFragmentActivity.class);
+                // pass in the current Item list to the Fragment-based child Activity
                 Intent intent = ItemListFragmentActivity.newIntent(MainActivity.this, mItems);
-                //startActivity(intent);
                 startActivityForResult(intent, REQUEST_FRAGMENT_CODE_LIST);
             }
         });

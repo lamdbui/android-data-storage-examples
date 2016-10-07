@@ -1,7 +1,6 @@
 package com.lamdbui.resulttest;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -29,13 +28,7 @@ public class ItemListFragment extends Fragment {
     private TextView mItemCountTextView;
     private Button mFinishButton;
 
-    private OnItemListListener mCallback;
-
     private ArrayList<String> mItems;
-
-    public interface OnItemListListener {
-        public void onItemListFinish(ArrayList<String> finalItems);
-    }
 
     public static ItemListFragment newFragment(ArrayList<String> items) {
         Bundle args = new Bundle();
@@ -45,22 +38,9 @@ public class ItemListFragment extends Fragment {
         return fragment;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        try {
-            mCallback = (OnItemListListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() +
-                    " must implement OnItemListListener");
-        }
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //return super.onCreateVi   ew(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.activity_item_list, container, false);
 
         mItems = getArguments().getStringArrayList(ARGS_ITEM_LIST);
@@ -76,16 +56,10 @@ public class ItemListFragment extends Fragment {
                 mItems.add("cheezburger");
                 data.putStringArrayListExtra(EXTRA_FRAGMENT_ITEM_LIST, mItems);
                 getActivity().setResult(Activity.RESULT_OK, data);
-                //mCallback.onItemListFinish(mItems);
                 getActivity().finish();
-                //getActivity().setResult();
             }
         });
 
         return view;
-    }
-
-    public ArrayList<String> getItems() {
-        return mItems;
     }
 }
