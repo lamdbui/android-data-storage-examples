@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> mItems;
 
     public MainActivity() {
-        mItems = new ArrayList<>();
+        //mItems = new ArrayList<>();
+        mItems = ItemManager.get().getItems();
     }
 
     @Override
@@ -39,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // pass in the current Item list to the child Activity
                 Intent intent = ItemListActivity.newIntent(MainActivity.this, mItems);
-                startActivityForResult(intent, REQUEST_CODE_LIST);
+                //startActivityForResult(intent, REQUEST_CODE_LIST);
+                startActivity(intent);
             }
         });
 
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 // pass in the current Item list to the Fragment-based child Activity
                 Intent intent = ItemListFragmentActivity.newIntent(MainActivity.this, mItems);
                 startActivityForResult(intent, REQUEST_FRAGMENT_CODE_LIST);
+                //startActivity(intent);
             }
         });
     }
@@ -66,10 +69,12 @@ public class MainActivity extends AppCompatActivity {
         if(resultCode != Activity.RESULT_OK)
             return;
 
+        /*
         if(requestCode == REQUEST_CODE_LIST) {
             // get our updated list here
             mItems = data.getStringArrayListExtra(ItemListActivity.EXTRA_ITEM_LIST);
-        }
+        }*/
+
 
         if(requestCode == REQUEST_FRAGMENT_CODE_LIST) {
             // get out updated list(from the fragment) here
@@ -78,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
-        mItemCountTextView.setText(mItems.size() + " " + getString(R.string.num_of_items));
+        //mItemCountTextView.setText(mItems.size() + " " + getString(R.string.num_of_items));
+        mItemCountTextView.setText(ItemManager.get().getItems().size() + " " + getString(R.string.num_of_items));
     }
 }

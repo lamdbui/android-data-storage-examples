@@ -20,7 +20,7 @@ public class ItemListActivity extends AppCompatActivity {
     private Button mFinishButton;
 
     // used as a local list that will be passed back later
-    ArrayList<String> mItems;
+    //ArrayList<String> mItems;
 
     public static Intent newIntent(Context packageContext, ArrayList<String> items) {
         Intent intent = new Intent(packageContext, ItemListActivity.class);
@@ -33,20 +33,23 @@ public class ItemListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
-        mItems = getIntent().getStringArrayListExtra(EXTRA_ITEM_LIST);
+        //mItems = getIntent().getStringArrayListExtra(EXTRA_ITEM_LIST);
 
         mItemCountTextView = (TextView) findViewById(R.id.num_of_passed_in_items_text_view);
-        mItemCountTextView.setText(mItems.size() + " " + getString(R.string.num_of_items_passed_in));
+        mItemCountTextView.setText(ItemManager.get().getItems().size() + " " +
+                getString(R.string.num_of_items_passed_in));
 
         mFinishButton = (Button) findViewById(R.id.finish_button);
         mFinishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent data = new Intent();
-                mItems.add("lol");
-                mItems.add("wut");
-                data.putStringArrayListExtra(EXTRA_ITEM_LIST, mItems);
-                setResult(Activity.RESULT_OK, data);
+                //mItems.add("lol");
+                //mItems.add("wut");
+                ItemManager.get().addItem("lol");
+                ItemManager.get().addItem("wut");
+                //data.putStringArrayListExtra(EXTRA_ITEM_LIST, mItems);
+                //setResult(Activity.RESULT_OK, data);
                 finish();
             }
         });
