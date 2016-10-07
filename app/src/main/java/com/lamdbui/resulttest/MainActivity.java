@@ -13,9 +13,11 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE_LIST = 1;
+    public static final int REQUEST_FRAGMENT_CODE_LIST = 2;
 
     private TextView mItemCountTextView;
     private Button mStartTestButton;
+    private Button mStartTestFragmentButton;
 
     private ArrayList<String> mItems;
 
@@ -41,6 +43,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE_LIST);
             }
         });
+
+        // use this button to try the Fragment-based Activity solution
+        mStartTestFragmentButton = (Button) findViewById(R.id.start_test_fragment_button);
+        mStartTestFragmentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent = new Intent(MainActivity.this, ItemListFragmentActivity.class);
+                Intent intent = ItemListFragmentActivity.newIntent(MainActivity.this, mItems);
+                //startActivity(intent);
+                startActivityForResult(intent, REQUEST_FRAGMENT_CODE_LIST);
+            }
+        });
     }
 
     @Override
@@ -58,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == REQUEST_CODE_LIST) {
             // get our updated list here
             mItems = data.getStringArrayListExtra(ItemListActivity.EXTRA_ITEM_LIST);
+        }
+
+        if(requestCode == REQUEST_FRAGMENT_CODE_LIST) {
+            // get out updated list(from the fragment) here
+            mItems = data.getStringArrayListExtra(ItemListFragmentActivity.EXTRA_FRAGMENT_ITEM_LIST);
         }
     }
 

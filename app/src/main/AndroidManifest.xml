@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".ItemListActivity">
         </activity>
+        <activity android:name=".ItemListFragmentActivity">
+        </activity>
     </application>
 
 </manifest>
