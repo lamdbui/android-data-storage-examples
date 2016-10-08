@@ -28,8 +28,6 @@ public class ItemListFragment extends Fragment {
     private TextView mItemCountTextView;
     private Button mFinishButton;
 
-    //private ArrayList<String> mItems;
-
     public static ItemListFragment newFragment(ArrayList<String> items) {
         Bundle args = new Bundle();
         args.putStringArrayList(ARGS_ITEM_LIST, items);
@@ -43,11 +41,7 @@ public class ItemListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_item_list, container, false);
 
-        //mItems = getArguments().getStringArrayList(ARGS_ITEM_LIST);
-        //mItems = ItemManager.get().getItems();
-
         mItemCountTextView = (TextView) view.findViewById(R.id.num_of_passed_in_items_text_view);
-        //mItemCountTextView.setText(mItems.size() + " " + getString(R.string.num_of_items_passed_in));
         mItemCountTextView.setText(ItemManager.get().getItems().size() + " " +
                 getString(R.string.num_of_items_passed_in));
 
@@ -55,11 +49,7 @@ public class ItemListFragment extends Fragment {
         mFinishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent data = new Intent();
-                //mItems.add("cheezburger");
                 ItemManager.get().addItem("cheezburger");
-                //data.putStringArrayListExtra(EXTRA_FRAGMENT_ITEM_LIST, mItems);
-                //getActivity().setResult(Activity.RESULT_OK, data);
                 getActivity().finish();
             }
         });
