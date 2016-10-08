@@ -51,6 +51,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
-        mItemCountTextView.setText(ItemManager.get().getItems().size() + " " + getString(R.string.num_of_items));
+        mItemCountTextView.setText(ItemManager.get(getApplicationContext()).getItems().size() + " " + getString(R.string.num_of_items));
     }
 }

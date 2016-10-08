@@ -42,14 +42,14 @@ public class ItemListFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_item_list, container, false);
 
         mItemCountTextView = (TextView) view.findViewById(R.id.num_of_passed_in_items_text_view);
-        mItemCountTextView.setText(ItemManager.get().getItems().size() + " " +
+        mItemCountTextView.setText(ItemManager.get(getContext()).getItems().size() + " " +
                 getString(R.string.num_of_items_passed_in));
 
         mFinishButton = (Button) view.findViewById(R.id.finish_button);
         mFinishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemManager.get().addItem("cheezburger");
+                ItemManager.get(getContext()).addItem("cheezburger");
                 getActivity().finish();
             }
         });

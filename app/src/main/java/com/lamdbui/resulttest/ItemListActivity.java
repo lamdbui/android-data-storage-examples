@@ -31,15 +31,15 @@ public class ItemListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_list);
 
         mItemCountTextView = (TextView) findViewById(R.id.num_of_passed_in_items_text_view);
-        mItemCountTextView.setText(ItemManager.get().getItems().size() + " " +
+        mItemCountTextView.setText(ItemManager.get(getApplicationContext()).getItems().size() + " " +
                 getString(R.string.num_of_items_passed_in));
 
         mFinishButton = (Button) findViewById(R.id.finish_button);
         mFinishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemManager.get().addItem("lol");
-                ItemManager.get().addItem("wut");
+                ItemManager.get(getApplicationContext()).addItem("lol");
+                ItemManager.get(getApplicationContext()).addItem("wut");
                 finish();
             }
         });
