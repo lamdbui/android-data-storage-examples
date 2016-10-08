@@ -38,8 +38,8 @@ public class ItemListActivity extends AppCompatActivity {
         mFinishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemManager.get(getApplicationContext()).addItem("lol");
-                ItemManager.get(getApplicationContext()).addItem("wut");
+                ItemManager.get(ItemListActivity.this).addItem("lol");
+                ItemManager.get(ItemListActivity.this).addItem("wut");
                 finish();
             }
         });
