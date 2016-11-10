@@ -1,4 +1,4 @@
-# ResultTest
+# android-data-storage-examples
 This project is used to learn how to use different methods to store data in Android.
 
 So far the following methods are used:
